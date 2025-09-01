@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Scramjet Static Proxy</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main>
+    <h1>Scramjet (BETA) Static Proxy</h1>
+    <form id="proxy-form" autocomplete="off">
+      <input id="url" type="text" placeholder="Enter site URL or search terms">
+      <button type="submit">Go</button>
+    </form>
+    <p class="note">
+      This is a placeholder. You must build Scramjet and place its assets under <code>/scramjet</code>, and configure <code>scramjet.config.js</code>.
+    </p>
+  </main>
+
+  <script src="./scramjet/scramjet.bundle.js"></script>
+  <script src="./scramjet/scramjet.config.js"></script>
+  <script src="./register-sw.js"></script>
+  <script>
+    const form = document.getElementById('proxy-form');
+    const input = document.getElementById('url');
+
+    function normalize(input) {
+      input = input.trim();
+      if (!input) return '';
+      if (/^[a-z]+:\/\//i.test(input)) return input;
+      if (/\./.test(input.split('/')[0])) return 'https://' + input;
+      const q = encodeURIComponent(input);
+      return `https://duckduckgo.com/?q=${q}`;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const target = normalize(input.value);
+      if (!target) return;
+      const encoded = window.__scramjet$.encodeUrl(target);
+      const proxied = window.__scramjet$.prefix + encoded;
+      window.location.href = proxied;
+    });
+  </script>
+</body>
+</html>
