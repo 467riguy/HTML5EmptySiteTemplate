@@ -1,9 +1,10 @@
 (async () => {
-  if (!('serviceWorker' in navigator)) return;
+  if (!("serviceWorker" in navigator)) return;
+
   try {
-    await navigator.serviceWorker.register('/scramjet/scramjet.sw.js', { scope: '/' });
+    await navigator.serviceWorker.register("/uv/uv.sw.js", { scope: "/" });
     await new Promise(r => setTimeout(r, 150));
   } catch (err) {
-    console.error('Service worker registration failed:', err);
+    console.error("SW registration failed:", err);
   }
 })();
