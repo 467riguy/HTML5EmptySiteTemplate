@@ -4,90 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sidebar Menu</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-    }
-
-    .sidebar {
-      width: 250px;
-      background-color: #333;
-      color: #fff;
-      height: 100vh;
-      transition: width 0.3s;
-      overflow: hidden;
-      position: fixed;
-    }
-
-    .sidebar.collapsed {
-      width: 60px;
-    }
-
-    .sidebar .logo {
-      text-align: center;
-      padding: 15px;
-      background: #444;
-    }
-
-    .sidebar .toggle-btn {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 20px;
-      margin: 10px;
-      cursor: pointer;
-    }
-
-    .sidebar ul.menu {
-      list-style: none;
-      padding: 0;
-    }
-
-    .sidebar ul.menu li {
-      padding: 10px;
-    }
-
-    .sidebar ul.menu li a,
-    .sidebar ul.menu li button {
-      color: #fff;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      border: none;
-      background: none;
-      width: 100%;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .sidebar ul.menu li a img,
-    .sidebar ul.menu li button img {
-      margin-right: 10px;
-    }
-
-    .sidebar ul.menu li .dropdown-container {
-      display: none;
-      background: #444;
-      padding-left: 20px;
-    }
-
-    .sidebar ul.menu li .dropdown-btn.active {
-      background: #555;
-    }
-
-    .main-content {
-      margin-left: 250px;
-      padding: 20px;
-      flex: 1;
-      transition: margin-left 0.3s;
-    }
-
-    .sidebar.collapsed ~ .main-content {
-      margin-left: 60px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div class="sidebar">
@@ -96,11 +13,11 @@
     </div>
     <button class="toggle-btn">☰</button>
     <ul class="menu">
-      <li><a href="#"><span>🏠</span> Home</a></li>
-      <li><a href="#"><span>📊</span> Dashboard</a></li>
+      <li><a href="index.html"><img src="icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"/> Home</a></li>
+      <li><a href="dashboard.html"><img src="icons/dashboard_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"/> Dashboard</a></li>
       <li>
         <button class="dropdown-btn">
-          <span>📁</span> Projects
+          <img src="icons/create_new_folder_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"/> Projects
         </button>
         <ul class="dropdown-container">
           <li><a href="#">Project 1</a></li>
@@ -108,37 +25,14 @@
           <li><a href="#">Project 3</a></li>
         </ul>
       </li>
-      <li><a href="#"><span>📅</span> Calendar</a></li>
-      <li><a href="#"><span>👤</span> Profile</a></li>
+      <li><a href="calendar.html"><img src="icons/calendar_month_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"/> Calendar</a></li>
+      <li><a href="profile.html"><img src="icons/person_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"/> Profile</a></li>
     </ul>
   </div>
   <div class="main-content">
     <h1>Welcome to MyApp</h1>
     <p>This is the home page content.</p>
   </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const sidebar = document.querySelector(".sidebar");
-      const toggleBtn = document.querySelector(".toggle-btn");
-
-      toggleBtn.addEventListener("click", function () {
-        sidebar.classList.toggle("collapsed");
-      });
-
-      const dropdownBtns = document.querySelectorAll(".dropdown-btn");
-
-      dropdownBtns.forEach((btn) => {
-        btn.addEventListener("click", function () {
-          this.classList.toggle("active");
-          const dropdownContent = this.nextElementSibling;
-          if (dropdownContent.style.display === "block") {
-            dropdownContent.style.display = "none";
-          } else {
-            dropdownContent.style.display = "block";
-          }
-        });
-      });
-    });
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
